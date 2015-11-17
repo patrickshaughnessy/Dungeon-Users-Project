@@ -1,0 +1,17 @@
+extends layout
+
+block css
+  link(href='../css/cell.css', rel='stylesheet')
+
+block content
+  .container-fluid
+    .row.textArea
+      .col-xs-10#title
+        - var name = user.username
+        h1 Welcome to your Cell, #{name}
+      .col-xs-2
+        button.btn.btn-danger#logout Logout
+        
+
+block js
+  script(src='../js/cellMain.js')

@@ -6,6 +6,24 @@ function init(){
 
   $('#register').click(register);
   $('#login').click(login);
+  $('#submitLogin').click(loadUserArea);
+}
+
+function loadUserArea(e){
+  e.preventDefault();
+  var user = {};
+  user.username = $('#usernameLogin').val();
+  user.password = $('#passwordLogin').val();
+
+  $.post('/users/authenticate', user)
+  .done(function(data){
+    console.log(data);
+    window.location.replace(`/cells/${data._id}`)
+  }).fail(function(err){
+    console.log(err);
+  });
+
+
 }
 
 function login(){
