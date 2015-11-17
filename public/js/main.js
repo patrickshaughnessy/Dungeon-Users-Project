@@ -17,7 +17,6 @@ function loadUserArea(e){
 
   $.post('/users/authenticate', user)
   .done(function(data){
-    console.log(data);
     window.location.replace(`/cells/${data._id}`)
   }).fail(function(err){
     console.log('there', err);
@@ -47,13 +46,10 @@ function register(){
     closeOnConfirm: false,
     animation: "slide-from-top"
   }, function(newUsername){
-    // console.log(`${input}`)
     if (!newUsername) return;
     $.get(`/users/check/${newUsername}`)
       .done(function(result){
-        // console.log('here', newUsername);
         if (result !== 'ok'){
-          console.log(result);
           register2();
           return;
         }
@@ -76,7 +72,6 @@ function register(){
             closeOnConfirm: true,
             animation: "pop"
           }, function(password2){
-            console.log(newUsername, password1, password2);
             if (password1 === password2){
               var newUser = {};
               newUser.username = newUsername;
@@ -97,7 +92,6 @@ function register(){
 
       }).fail(function(err){
         console.log(err);
-        // display username taken message
     });
   });
 }
@@ -113,13 +107,10 @@ function register2(){
     closeOnConfirm: false,
     animation: "pop"
   }, function(newUsername){
-    // console.log(`${input}`)
     if (!newUsername) return;
     $.get(`/users/check/${newUsername}`)
       .done(function(result){
-        // console.log('here', newUsername);
         if (result !== 'ok'){
-          console.log(result);
           register2();
           return;
         }
@@ -142,7 +133,6 @@ function register2(){
             closeOnConfirm: true,
             animation: "pop"
           }, function(password2){
-            console.log(newUsername, password1, password2);
             if (password1 === password2){
               var newUser = {};
               newUser.username = newUsername;
@@ -160,16 +150,13 @@ function register2(){
         });
       }).fail(function(err){
         console.log(err);
-        // display username taken message
     });
   });
 }
 
 function goToCellAfterRegister(newUser){
-  console.log(newUser);
   $.post('/users/authenticate', newUser)
   .done(function(data){
-    console.log(data);
     window.location.replace(`/cells/${data._id}`)
   }).fail(function(err){
     console.log('there', err);
