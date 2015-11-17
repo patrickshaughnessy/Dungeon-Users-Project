@@ -8,7 +8,10 @@ var User;
 
 var userSchema = Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  name: String,
+  avatar: String,
+  // items:
 });
 
 userSchema.statics.register = function(user, cb){
@@ -30,6 +33,7 @@ userSchema.statics.register = function(user, cb){
 
 userSchema.statics.authenticate = function(user, cb){
   User.findOne({username: user.username}, function(err, dbUser){
+      console.log('here', !dbUser, err);
     if (err || !dbUser) return cb(err || 'Incorrect username or password');
     bcrypt.compare(user.password, dbUser.password, function(err, res){
       if (err || !res) return cb(err || 'Incorrect username or password');

@@ -20,7 +20,14 @@ function loadUserArea(e){
     console.log(data);
     window.location.replace(`/cells/${data._id}`)
   }).fail(function(err){
-    console.log(err);
+    console.log('there', err);
+    var errorMessage = $('<h1>').text(err.responseText).addClass('textArea message')
+    $('#loginArea').append(errorMessage);
+    window.setTimeout(function(){
+      $('.message').remove();
+    }, 3000);
+    $('#usernameLogin').val('');
+    $('#passwordLogin').val('');
   });
 
 
@@ -76,8 +83,8 @@ function register(){
               newUser.password = password1;
 
               $.post('/users/register', newUser)
-              .done(function(newUser){
-                console.log('user saved');
+              .done(function(res){
+                goToCellAfterRegister(newUser)
               }).fail(function(err){
                 console.log(err);
               });
@@ -142,8 +149,8 @@ function register2(){
               newUser.password = password1;
 
               $.post('/users/register', newUser)
-              .done(function(newUser){
-                console.log('user saved');
+              .done(function(res){
+                goToCellAfterRegister(newUser);
               }).fail(function(err){
                 console.log(err);
               });
@@ -151,12 +158,26 @@ function register2(){
 
           });
         });
-
-
-
       }).fail(function(err){
         console.log(err);
         // display username taken message
     });
+  });
+}
+
+function goToCellAfterRegister(newUser){
+  console.log(newUser);
+  $.post('/users/authenticate', newUser)
+  .done(function(data){
+    console.log(data);
+    window.location.replace(`/cells/${data._id}`)
+  }).fail(function(err){
+    console.log('there', err);
+    var errorMessage = $('<h1>').text(err.responseText).addClass('textArea message')
+    $('#loginArea').append(errorMessage);
+    window.setTimeout(function(){
+      $('.message').remove();
+    }, 3000);
+
   });
 }

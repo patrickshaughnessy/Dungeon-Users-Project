@@ -25,9 +25,10 @@ router.post('/register', function(req, res){
 
 router.post('/authenticate', function(req, res){
   User.authenticate(req.body, function(err, user){
+    if (err) return res.status(400).send(err);
     res.cookie('username', user.username);
     res.cookie('userId', user._id.toString());
-    res.status(err ? 400 : 200).send(err || user);
+    res.send(user);
   });
 });
 
