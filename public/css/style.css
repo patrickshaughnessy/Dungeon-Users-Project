@@ -1,0 +1,25 @@
+body {
+  background-image: url('http://2.bp.blogspot.com/-r63hLEuMXXc/T6Y0O_QJgSI/AAAAAAAAB4E/TljJYhtKHSw/s1600/Alcatraz+corridor+cells+prison+jail+entrance+the+rock+San+Francisco+picture.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#title {
+  text-align: left;
+}
+
+.textArea {
+  background-color: rgba(92, 0, 0, 0.67);
+  color: white;
+  font-family: 'Lakki Reddy', cursive;
+  font-size: 150%;
+  text-align: center;
+}
+
+a {
+  color: white;
+}
+
+.hide {
+  display:none;
+}

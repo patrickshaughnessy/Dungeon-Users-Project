@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  .container-fluid
+    .row.textArea
+      .col-xs-8#title
+        a(href='/')
+          h1 Welcome to The Dungeon
+      .col-xs-2
+        a#login
+          h1 My Cell
+      .col-xs-2
+        a#register
+          h1 Fresh Meat
+  br
+  br
+  .container-fluid#loginArea.hide
+    .row
+      .col-xs-12.textArea
+        h1 Gain access to your Cell.
+        form
+          .form-group
+            label(for='usernameLogin') Username
+            input#usernameLogin.form-control(type='text', placeholder='Enter your username')
+          .form-group
+            label(for='passwordLogin') Password
+            input#passwordLogin.form-control(type='password', placeholder='Enter your password')
+          //- .checkbox
+          //-   label
+          //-     input(type='checkbox')
+          //-     |  Check me out
+          button#submitLogin.btn.btn-default(type='submit') Submit
+        
+
+        
+
+block js
+  script(src='js/main.js')
